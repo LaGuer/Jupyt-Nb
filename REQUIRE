@@ -2,8 +2,8 @@ PyPlot
 PyCall
 Gadfly
 RDatasets
-Measurements 1.0.2
+Measurements
 Cosmology
 SpecialFunctions
-Unitful 0.8.0
+Unitful
 # PhysConsts
