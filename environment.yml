@@ -1,5 +1,5 @@
 dependencies:
-  - julia==0.7
+  - julia
   - matplotlib
   - numpy
   - pip
