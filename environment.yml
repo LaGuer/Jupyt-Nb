@@ -3,4 +3,4 @@ dependencies:
   - numpy
   - pip
   - pip:
-      - julia=1.0.2
+      - julia==1.0.2
