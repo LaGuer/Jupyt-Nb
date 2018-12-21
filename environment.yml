@@ -1,7 +1,7 @@
 dependencies:
-  - julia
+#  - julia
   - matplotlib
   - numpy
   - pip
- # - pip:
-  #    - julia
+  - pip:
+      - julia
