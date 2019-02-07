@@ -6,6 +6,6 @@ Measurements
 Cosmology
 SpecialFunctions
 Unitful
-PhysicalConstant
+MathPhysicalConstants
 # git+https://github.com/LaGuer/PhysicalConstant.jl.git#egg=PhysicalConstant[complete]
 # PhysConsts
