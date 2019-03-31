@@ -10,4 +10,4 @@ def _exec_notebook(path):
         subprocess.check_call(args)
 
 def test():
-    _exec_notebook('Julia%20Jupiter-Notebook%20Constants%20in%20Cosmology.ipynb')
+    _exec_notebook('test.ipynb')
