@@ -3,5 +3,6 @@ dependencies:
   - matplotlib
   - numpy
   - pip
+  - pytest
   - pip:
       - julia
