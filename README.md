@@ -4,7 +4,7 @@
 
 [![codecov](https://codecov.io/gh/LaGuer/Jupyt-Nb/branch/master/graph/badge.svg)](https://codecov.io/gh/LaGuer/Jupyt-Nb)
 
-[![Travis](https://travis-ci.org/LaGuer/Jupyt-Nb.jl.svg?branch=master)](https://travis-ci.org/LaGuer/Jupyt-Nb.jl)
+[![Travis](https://travis-ci.org/LaGuer/Jupyt-Nb.svg?branch=master)](https://travis-ci.org/LaGuer/Jupyt-Nb)
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/LaGuer/Jupyt-Nb/master)
 
