@@ -99,7 +99,7 @@ install:
   - $HOME/miniconda/bin/conda config --set always_yes yes --set changeps1 no
 #  - conda update -q conda
 
-  - $HOME/miniconda/bin/conda env create -n test-environment python=$JUPYTENV -f environment.yml
+  - $HOME/miniconda/bin/conda env create -n test-environment python=$TRAVIS_PYTHON_VERSION -f environment.yml
   - source activate test-environment
 
 #  - conda env create -n test-environment python=$TRAVIS_PYTHON_VERSION -f environment.yml
@@ -118,7 +118,7 @@ install:
 # 'python3' is a 'command not found' error on Windows but 'py' works on Windows only
 #script: python3 my_app.py || python my_app.py
 script:
-  - cd $HOME/build/LaGuer/Jupyter-Notebook-Practice-Physical-Constants-Ratios/ && ls
+  - cd $HOME/build/LaGuer/Jupyt-Nb/ && ls
 #  - sudo find / -name "test_nb.py" -print
 #  - build/LaGuer/Jupyter-Notebook-Practice-Physical-Constants-Ratios/test_nb.py
   - ls && pwd
