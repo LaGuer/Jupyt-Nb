@@ -1,43 +1,127 @@
 # http://travis-ci.org/#!/LaGuer/Jupyt-Nb
-os:
-  - linux
-  - windows
+language: python            # this works for Linux but is an error on macOS or Windows
+matrix:
+  include:
+    - name: "Python 3.7.1 on Xenial Linux"
+      os: linux
+      python: 3.7           # this works for Linux but is ignored on macOS or Windows
+      dist: xenial          # required for Python >= 3.7
+      before_install: wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh ; bash miniconda.sh -b -p $HOME/miniconda -f -u
+      env: TRAVIS_PYTHON_VERSION=3.7
+    - name: "Python 3.7.2 on macOS"
+      os: osx
+      osx_image: xcode10.2  # Python 3.7.2 running on macOS 10.14.3
+      language: shell       # 'language: python' is an error on Travis CI macOS
+      before_install: wget https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O miniconda.sh ; bash miniconda.sh -b -p $HOME/miniconda -f -u
+    - name: "Python 3.7.3 on Windows"
+      os: windows           # Windows 10.0.17134 N/A Build 17134
+      language: bash       # 'language: python' is an error on Travis CI Windows
+      before_install: choco install python ;  choco install miniconda3
+      env: PATH=/c/Python37:/c/Python37/Scripts:/c/tools/miniconda3/scripts:/c/tools/miniconda3/:$PATH
 
-language: bash
-
-env:
-  - JUPYTENV=3.5
-
-install:
-  # We do this conditionally because it saves us some downloading if the
-  # version is the same.
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-      sudo apt-get update;
-      if [[ "$JUPYTENV" == "2.7" ]]; then
-        wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O miniconda.sh;
-      else
-        wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
-      fi;
-
-      bash miniconda.sh -b -p $HOME/miniconda;
-      export PATH="$HOME/miniconda/bin:$PATH";
-    elif  [[ "$TRAVIS_OS_NAME" == "windows" ]]; then
-      if [[ "$JUPYTENV" == "2.7" ]]; then
-        choco install miniconda2 --params="'/AddToPath:1'";
-        export PATH="/c/tools/miniconda2/scripts:/c/tools/miniconda2/:$PATH";
-      else
-        choco install miniconda3 --params="'/AddToPath:1'";
-        export PATH="/c/tools/miniconda3/scripts:/c/tools/miniconda3/:$PATH";
-      fi;
+ 
+  allow_failures:
+    - os: windows
+      
+before_install:
+  
+  - |
+    
+    if [[ "$TRAVIS_OS_NAME" == "osx" ]] && [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
+      env | sort
+      if ! which python$TRAVIS_PYTHON_VERSION; then
+        wget https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O miniconda.sh
+      fi
+      python3 -m pip install virtualenv
+      python3 -m virtualenv -p $(which python$TRAVIS_PYTHON_VERSION) ~/travis-env
+      source ~/travis-env/bin/activate
     fi
-  - hash -r
-  - conda config --set always_yes yes --set changeps1 no
-  - conda update -q conda
-  # Useful for debugging any issues with conda
-  - conda info -a
+  - python --version
+  - ls; pwd
+#  - wget https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O miniconda.sh
+#  - bash miniconda.sh -b -p $HOME/miniconda -f -u
+  - ls; pwd
+#  - sudo find / -name "conda" -print
+  - $HOME/miniconda/bin/conda info -a
 
-  - conda env create -n test-environment python=$JUPYTENV -f environment.yml
+  - |
+    
+    if [[ "$TRAVIS_OS_NAME" == "Ubuntu" ]] && [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
+      env | sort
+      if ! which python$TRAVIS_PYTHON_VERSION; then
+        wget https://repo.anaconda.com/miniconda/Miniconda2-latest-Linux-x86_64.sh -O miniconda.sh
+      fi
+      python3 -m pip install virtualenv
+      python3 -m virtualenv -p $(which python$TRAVIS_PYTHON_VERSION) ~/travis-env
+      source ~/travis-env/bin/activate
+    fi
+  - python --version
+#  - wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
+  - ls ; pwd
+#  - bash miniconda.sh -b -p $HOME/miniconda -f -u
+  - ls; pwd
+#  - sudo find / -name "conda" -print
+  - $HOME/miniconda/bin/conda info -a
+  
+
+  - |
+    
+    if [[ "$TRAVIS_OS_NAME" == "windows" ]] && [[ "$TRAVIS_PYTHON_VERSION" == "3.7" ]]; then
+      env | sort
+      if ! which python$TRAVIS_PYTHON_VERSION; then
+        choco install miniconda3
+      fi
+      python3 -m pip install virtualenv
+      python3 -m virtualenv -p $(which python$TRAVIS_PYTHON_VERSION) ~/travis-env
+      source ~/travis-env/bin/activate
+    fi
+  - python --version
+  - pwd
+  - ls
+#  - conda info -a
+
+install: 
+  - pip3 install --upgrade pip  # all three OSes agree about 'pip3'
+  - pip install utils
+  - pip install pytest
+  - python --version
+#  - bash miniconda.sh -b -p $HOME/miniconda -f -u
+  - export PATH="$HOME/miniconda/bin:$PATH"
+  - hash -r
+
+#  - start /wait "" Miniconda3-latest-Windows-x86_64.exe /InstallationType=AllUsers /RegisterPython=1 /S /D=%UserProfile%\Miniconda3
+#  - conda config --set always_yes yes --set changeps1 no
+  - echo $HOME/miniconda/bin 
+#  - cd $HOME/miniconda/bin
+  - ls $HOME/
+# Useful for debugging any issues with conda
+  - $HOME/miniconda/bin/conda info -a
+  - $HOME/miniconda/bin/conda config --set always_yes yes --set changeps1 no
+#  - conda update -q conda
+
+  - $HOME/miniconda/bin/conda env create -n test-environment python=$JUPYTENV -f environment.yml
   - source activate test-environment
 
+#  - conda env create -n test-environment python=$TRAVIS_PYTHON_VERSION -f environment.yml
+#  - source activate test-environment
+#  - conda info --envs
+
+#  - pip install -U pip setuptools # Travis breaks without this
+#  - pip install -r requirements.txt
+#  - sudo find / -name "jupyter" -print
+  - pip3 install jupyter
+  - pip3 install nbformat
+  - jupyter nbextension enable --py widgetsnbextension
+  
+  
+# 'python' points to Python 2.7 on macOS but points to Python 3.7 on Linux and Windows
+# 'python3' is a 'command not found' error on Windows but 'py' works on Windows only
+#script: python3 my_app.py || python my_app.py
 script:
+  - cd $HOME/build/LaGuer/Jupyter-Notebook-Practice-Physical-Constants-Ratios/ && ls
+#  - sudo find / -name "test_nb.py" -print
+#  - build/LaGuer/Jupyter-Notebook-Practice-Physical-Constants-Ratios/test_nb.py
+  - ls && pwd
+  - python test_nb.py  || python test_nb.py || python test_nb.py
+  - python3 test_nb.py  || python3 test_nb.py || python3 test_nb.py
   - py.test
