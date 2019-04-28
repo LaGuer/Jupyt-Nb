@@ -1,5 +1,6 @@
 # http://travis-ci.org/#!/LaGuer/Jupyt-Nb
 language: python            # this works for Linux but is an error on macOS or Windows
+codecov: true
 matrix:
   include:
     - name: "Python 3.7.1 on Xenial Linux"
