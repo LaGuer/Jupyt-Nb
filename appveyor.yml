@@ -21,7 +21,7 @@ install:
   - "%CMD_IN_ENV%  pip install jupyter"
 #  - "%CMD_IN_ENV%  pip install nbformat"
   - "%CMD_IN_ENV%  jupyter nbextension enable --py widgetsnbextension"
-  - "%CMD_IN_ENV%  curl https://github.com/hakimel/reveal.js/archive/master.zip"
+  - "%CMD_IN_ENV%  curl https://github.com/hakimel/reveal.js/archive/3.8.0.zip"
   - "%CMD_IN_ENV%  unzip master.zip"
   - "%CMD_IN_ENV%  mv reveal.js-master reveal.js"
   - "%CMD_IN_ENV%  pip install nose coverage"
