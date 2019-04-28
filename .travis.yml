@@ -128,7 +128,7 @@ script:
   - python test_nb.py  || python test_nb.py || python test_nb.py
   - python3 test_nb.py  || python3 test_nb.py || python3 test_nb.py
 #  - py.test
-  - jupyter nbconvert test.ipynb --to slides --reveal-prefix=reveal.js
+  - jupyter nbconvert slide-example.ipynb --to slides --reveal-prefix=reveal.js
   
 after_success: |
   if [ -n "$GITHUB_API_KEY" ]; then
