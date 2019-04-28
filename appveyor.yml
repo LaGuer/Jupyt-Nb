@@ -41,11 +41,11 @@ test_script:
   
 after_success:
 #  - |
-  - "%CMD_IN_ENV% if [ -n "$GITHUB_API_KEY" ]; then
+#  - "%CMD_IN_ENV% if [ -n "\$GITHUB_API_KEY" ]; then
   - "%CMD_IN_ENV% git checkout --orphan gh-pages
   - "%CMD_IN_ENV% git rm -rf --cached .
   - "%CMD_IN_ENV% mv nb.slides.html index.html
   - "%CMD_IN_ENV% git add -f --ignore-errors index.html reveal.js
-  - "%CMD_IN_ENV% git -c user.name='travis' -c user.email='travis' commit -m init
-  - "%CMD_IN_ENV% git push -f -q https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG gh-pages
-  - "%CMD_IN_ENV% fi
+  - "%CMD_IN_ENV% git -c user.name='appveyor' -c user.email='appveyor' commit -m init
+#  - "%CMD_IN_ENV% git push -f -q https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG gh-pages
+#  - "%CMD_IN_ENV% fi
