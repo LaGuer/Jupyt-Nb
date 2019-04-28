@@ -13,15 +13,15 @@ matrix:
       osx_image: xcode10.2  # Python 3.7.2 running on macOS 10.14.3
       language: shell       # 'language: python' is an error on Travis CI macOS
       before_install: wget https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O miniconda.sh ; bash miniconda.sh -b -p $HOME/miniconda -f -u
-    - name: "Python 3.7.3 on Windows"
-      os: windows           # Windows 10.0.17134 N/A Build 17134
-      language: bash       # 'language: python' is an error on Travis CI Windows
-      before_install: choco install python ;  choco install miniconda3 ; $HOME/miniconda/bin/conda info -a ; /c/tools//miniconda3/bin/conda info -a
-      env: PATH=/c/Python37:/c/Python37/Scripts:/c/Users/travis/miniconda/scripts:/c/Users/travis/miniconda/:$PATH
+#    - name: "Python 3.7.3 on Windows"
+#      os: windows           # Windows 10.0.17134 N/A Build 17134
+#      language: bash       # 'language: python' is an error on Travis CI Windows
+#      before_install: choco install python ;  choco install miniconda3 ; $HOME/miniconda/bin/conda info -a ; /c/tools//miniconda3/bin/conda info -a
+#      env: PATH=/c/Python37:/c/Python37/Scripts:/c/Users/travis/miniconda/scripts:/c/Users/travis/miniconda/:$PATH
 
  
   allow_failures:
-    - os: windows
+#    - os: windows
     - os: osx
       
 before_install:
