@@ -4,6 +4,8 @@
 
 [![codecov](https://codecov.io/gh/LaGuer/Jupyt-Nb/branch/master/graph/badge.svg)](https://codecov.io/gh/LaGuer/Jupyt-Nb)
 
+[![Coverage Status](https://coveralls.io/repos/github/LaGuer/Jupyt-Nb/badge.svg?branch=master)](https://coveralls.io/github/LaGuer/Jupyt-Nb?branch=master)
+
 [![Travis](https://travis-ci.org/LaGuer/Jupyt-Nb.svg?branch=master)](https://travis-ci.org/LaGuer/Jupyt-Nb)
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/LaGuer/Jupyt-Nb/master)
