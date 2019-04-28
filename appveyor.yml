@@ -1,0 +1,48 @@
+build: false
+matrix:
+  fast_finish: true     # immediately finish build once one of the jobs fails.
+
+environment:
+  matrix:
+   - PYTHON: "C:\\Python36"
+     PYTHON_VERSION: "3.6.x"
+     PYTHON_ARCH: "32"
+
+   - PYTHON: "C:\\Python36-x64"
+     PYTHON_VERSION: "3.6.x"
+     PYTHON_ARCH: "64"
+
+init:
+  - "ECHO %PYTHON% %PYTHON_VERSION% %PYTHON_ARCH%"
+
+install:
+  - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
+  - "%CMD_IN_ENV%  python -m pip install --upgrade setuptools pip"
+  - "%CMD_IN_ENV%  pip install jupyter"
+  - "%CMD_IN_ENV%  pip install nbformat"
+  - "%CMD_IN_ENV%  jupyter nbextension enable --py widgetsnbextension"
+  - "%CMD_IN_ENV%  wget https://github.com/hakimel/reveal.js/archive/master.zip"
+  - "%CMD_IN_ENV%  unzip master.zip"
+  - "%CMD_IN_ENV%  mv reveal.js-master reveal.js"
+  - "%CMD_IN_ENV%  pip install nose coverage"
+#  - "%CMD_IN_ENV%  pip install .[test]"
+  - "%CMD_IN_ENV%  pip install pytest"
+#  - "%CMD_IN_ENV%  mkdir results"
+#  - "%CMD_IN_ENV%  cd results"
+#  - "%CMD_IN_ENV%  cd ~"
+  - "%CMD_IN_ENV%  ls"
+  
+test_script:
+#  - "%CMD_IN_ENV%  iptest --coverage xml"
+  - "%CMD_IN_ENV%  python test_nb.py  || python test_nb.py || python test_nb.py"
+  - jupyter nbconvert test.ipynb --to slides --reveal-prefix=reveal.js
+  
+after_success: |
+  if [ -n "$GITHUB_API_KEY" ]; then
+  git checkout --orphan gh-pages
+  git rm -rf --cached .
+  mv nb.slides.html index.html
+  git add -f --ignore-errors index.html img reveal.js
+  git -c user.name='travis' -c user.email='travis' commit -m init
+  git push -f -q https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG gh-pages
+  fi
