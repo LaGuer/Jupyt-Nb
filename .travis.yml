@@ -113,8 +113,10 @@ install:
   - pip3 install jupyter
   - pip3 install nbformat
   - jupyter nbextension enable --py widgetsnbextension
-  
-  
+  - wget https://github.com/hakimel/reveal.js/archive/master.zip
+  - unzip master.zip
+  - mv reveal.js-master reveal.js
+   
 # 'python' points to Python 2.7 on macOS but points to Python 3.7 on Linux and Windows
 # 'python3' is a 'command not found' error on Windows but 'py' works on Windows only
 #script: python3 my_app.py || python my_app.py
@@ -126,3 +128,14 @@ script:
   - python test_nb.py  || python test_nb.py || python test_nb.py
   - python3 test_nb.py  || python3 test_nb.py || python3 test_nb.py
   - py.test
+  - jupyter nbconvert test.ipynb --to slides --reveal-prefix=reveal.js
+  
+after_success: |
+  if [ -n "$GITHUB_API_KEY" ]; then
+  git checkout --orphan gh-pages
+  git rm -rf --cached .
+  mv nb.slides.html index.html
+  git add -f --ignore-errors index.html img reveal.js
+  git -c user.name='travis' -c user.email='travis' commit -m init
+  git push -f -q https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG gh-pages
+  fi
