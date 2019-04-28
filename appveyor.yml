@@ -25,7 +25,7 @@ install:
   - "%CMD_IN_ENV%  python -m wget https://github.com/hakimel/reveal.js/archive/3.8.0.zip"
   - "%CMD_IN_ENV%  ls"
   - "%CMD_IN_ENV%  unzip reveal.js-3.8.0.zip"
-  - "%CMD_IN_ENV%  mv reveal.js-master reveal.js"
+  - "%CMD_IN_ENV%  mv reveal.js-3.8.0 reveal.js"
   - "%CMD_IN_ENV%  pip install nose coverage"
 #  - "%CMD_IN_ENV%  pip install .[test]"
   - "%CMD_IN_ENV%  pip install pytest"
