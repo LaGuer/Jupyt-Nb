@@ -128,7 +128,7 @@ install:
   - pip3 install nbformat
   - jupyter nbextension enable --py widgetsnbextension
   - pip3 install jupyter_latex_envs
-  - sudo jupyter nbextension install --py latex_envs
+  - /usr/bin/sudo jupyter nbextension install --py latex_envs
   - jupyter nbextension enable --py latex_envs
   - wget https://github.com/hakimel/reveal.js/archive/master.zip
   - unzip master.zip
@@ -139,7 +139,7 @@ install:
 #script: python3 my_app.py || python my_app.py
 script:
   - cd $HOME/build/LaGuer/Jupyt-Nb/ && ls
-  - sudo find / -name "sudo" -print
+#  - sudo find / -name "sudo" -print
 #  - build/LaGuer/Jupyter-Notebook-Practice-Physical-Constants-Ratios/test_nb.py
   - ls && pwd
   - python test_nb.py  || python test_nb.py || python test_nb.py
