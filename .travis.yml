@@ -113,6 +113,9 @@ install:
 #  - sudo find / -name "jupyter" -print
   - pip3 install jupyter
   - pip3 install nbformat
+  - pip3 install jupyter_latex_envs
+  - jupyter nbextension install --py latex_envs
+  - jupyter nbextension enable --py latex_envs
   - jupyter nbextension enable --py widgetsnbextension
   - wget https://github.com/hakimel/reveal.js/archive/master.zip
   - unzip master.zip
@@ -129,7 +132,12 @@ script:
   - python test_nb.py  || python test_nb.py || python test_nb.py
   - python3 test_nb.py  || python3 test_nb.py || python3 test_nb.py
 #  - py.test
+  - cp slide-example.ipynb slide-example1.ipynb && cp slide-example.ipynb slide-example2.ipynb
   - jupyter nbconvert slide-example.ipynb --to slides --reveal-prefix=reveal.js
+  - jupyter nbconvert --to latex_with_lenvs slide-example1.ipynb
+  - jupyter nbconvert --to slides_with_lenvs slide-example2.ipynb
+  - ls
+#  - jupyter nbconvert --to html_with_toclenvs slide-example.ipynb
   
 after_success: |
   if [ -n "$GITHUB_API_KEY" ]; then
@@ -137,7 +145,7 @@ after_success: |
     git rm -rf --cached .
     rm ./reveal.js/index.html
     cp slide-example.slides.html ./reveal.js/index.html
-    git add -f --ignore-errors index.html reveal.js
+    git add -f --ignore-errors reveal.js/index.html reveal.js/
     git -c user.name='travis' -c user.email='travis' commit -m init
     git push -f -q https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG gh-pages
   fi
@@ -146,7 +154,7 @@ after_success: |
     git rm -rf --cached .
     rm ./reveal.js/index.html
     cp slide-example.slides.html reveal.js/index.html
-    git add -f --ignore-errors index.html reveal.js
+    git add -f --ignore-errors reveal.js/index.html reveal.js/
     git -c user.name='travis' -c user.email='travis' commit -m init
     git push -f -q https://$GITLAB_USER:$GITLAB_API_KEY@gitlab.com/$TRAVIS_REPO_SLUG gh-pages
   fi
