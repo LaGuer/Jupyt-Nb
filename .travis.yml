@@ -113,7 +113,7 @@ install:
 #  - sudo find / -name "jupyter" -print
   - pip3 install jupyter
   - pip3 install nbformat
-  - pip3 install jupyter_latex_envs
+  - pip install jupyter_latex_envs
   - jupyter nbextension install --py latex_envs
   - jupyter nbextension enable --py latex_envs
   - jupyter nbextension enable --py widgetsnbextension
@@ -134,7 +134,7 @@ script:
 #  - py.test
   - cp slide-example.ipynb slide-example1.ipynb && cp slide-example.ipynb slide-example2.ipynb
   - jupyter nbconvert slide-example.ipynb --to slides --reveal-prefix=reveal.js
-#  - jupyter nbconvert --to latex_with_lenvs slide-example1.ipynb
+  - jupyter nbconvert slide-example1.ipynb --to latex_with_lenvs  --reveal-prefix=reveal.js 
 #  - jupyter nbconvert --to slides_with_lenvs slide-example2.ipynb
   - ls
 #  - jupyter nbconvert --to html_with_toclenvs slide-example.ipynb
