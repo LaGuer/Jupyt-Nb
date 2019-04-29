@@ -134,8 +134,8 @@ script:
 #  - py.test
   - cp slide-example.ipynb slide-example1.ipynb && cp slide-example.ipynb slide-example2.ipynb
   - jupyter nbconvert slide-example.ipynb --to slides --reveal-prefix=reveal.js
-  - jupyter nbconvert --to latex_with_lenvs slide-example1.ipynb
-  - jupyter nbconvert --to slides_with_lenvs slide-example2.ipynb
+#  - jupyter nbconvert --to latex_with_lenvs slide-example1.ipynb
+#  - jupyter nbconvert --to slides_with_lenvs slide-example2.ipynb
   - ls
 #  - jupyter nbconvert --to html_with_toclenvs slide-example.ipynb
   
