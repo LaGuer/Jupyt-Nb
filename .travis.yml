@@ -5,6 +5,7 @@ matrix:
   include:
     - name: "Python 3.6 on Xenial Linux"
       os: linux
+      sudo: true
       addons:
         apt:
           packages:
