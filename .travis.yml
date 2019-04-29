@@ -89,6 +89,7 @@ before_install:
 
 install: 
   - pip3 install --upgrade pip  # all three OSes agree about 'pip3'
+  - pip install pandoc
   - pip install utils
   - pip install pytest
   - python --version
