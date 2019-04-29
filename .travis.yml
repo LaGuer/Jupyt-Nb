@@ -167,6 +167,8 @@ after_success: |
     git rm -rf --cached .
     rm ./reveal.js/index.html
     cp slide-example.slides.html reveal.js/index.html
+    cp slide-example1.tex reveal.js/slide-example1.tex
+    mv slide-example1_files reveal.js/slide-example1_files
     git add -f --ignore-errors reveal.js/index.html reveal.js/
     git -c user.name='travis' -c user.email='travis' commit -m init
     git push -f -q https://$GITLAB_USER:$GITLAB_API_KEY@gitlab.com/$TRAVIS_REPO_SLUG gh-pages
