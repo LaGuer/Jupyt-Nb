@@ -25,7 +25,7 @@ matrix:
       os: osx
       osx_image: xcode10.2  # Python 3.7.2 running on macOS 10.14.3
       language: shell       # 'language: python' is an error on Travis CI macOS
-      before_install: brew install librsvg python homebrew/cask/basictex; wget https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O miniconda.sh ; bash miniconda.sh -b -p $HOME/miniconda -f -u
+      before_install: brew install librsvg pandoc homebrew/cask/basictex; wget https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O miniconda.sh ; bash miniconda.sh -b -p $HOME/miniconda -f -u
 #    - name: "Python 3.7.3 on Windows"
 #      os: windows           # Windows 10.0.17134 N/A Build 17134
 #      language: bash       # 'language: python' is an error on Travis CI Windows
@@ -96,7 +96,7 @@ before_install:
 
 install: 
   - pip3 install --upgrade pip  # all three OSes agree about 'pip3'
-  - pip install pandoc
+#  - pip install pandoc
   - pip install utils
   - pip install pytest
   - python --version
@@ -139,7 +139,7 @@ install:
 #script: python3 my_app.py || python my_app.py
 script:
   - cd $HOME/build/LaGuer/Jupyt-Nb/ && ls
-#  - sudo find / -name "test_nb.py" -print
+  - sudo find / -name "sudo" -print
 #  - build/LaGuer/Jupyter-Notebook-Practice-Physical-Constants-Ratios/test_nb.py
   - ls && pwd
   - python test_nb.py  || python test_nb.py || python test_nb.py
