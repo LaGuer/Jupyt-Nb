@@ -98,6 +98,7 @@ install:
   - pip3 install --upgrade pip  # all three OSes agree about 'pip3'
 #  - pip install pandoc
   - pip install utils
+  - pip install codecov
   - pip install pytest
   - python --version
 #  - bash miniconda.sh -b -p $HOME/miniconda -f -u
@@ -165,6 +166,7 @@ after_success: |
     cp slide-example.slides.html ./reveal.js/index.html
     git add -f --ignore-errors reveal.js/index.html reveal.js/
     git -c user.name='travis' -c user.email='travis' commit -m init
+    codecov
     git push -f -q https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG gh-pages
   fi
   if [ -n "$GITLAB_API_KEY" ]; then
@@ -178,5 +180,6 @@ after_success: |
     git add -f --ignore-errors reveal.js/index.html reveal.js/
     git -c user.name='travis' -c user.email='travis' commit -m init
     git push -f -q https://$GITLAB_USER:$GITLAB_API_KEY@gitlab.com/$TRAVIS_REPO_SLUG gh-pages
+    codecov
   fi
 
