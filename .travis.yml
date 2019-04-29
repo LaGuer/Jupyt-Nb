@@ -111,6 +111,7 @@ install:
   - ls $HOME/
 # Useful for debugging any issues with conda
   - $HOME/miniconda/bin/conda info -a
+  - $HOME/miniconda/bin/conda install -c conda-forge -c pkgw-forge tectonic
   - $HOME/miniconda/bin/conda config --set always_yes yes --set changeps1 no
 #  - conda update -q conda
 
@@ -147,7 +148,7 @@ script:
 #  - py.test
   - cp slide-example.ipynb slide-example1.ipynb && cp slide-example.ipynb slide-example2.ipynb
   - jupyter nbconvert slide-example.ipynb --to slides --reveal-prefix=reveal.js
-  - jupyter nbconvert slide-example1.ipynb --to latex  --reveal-prefix=reveal.js 
+  - jupyter nbconvert slide-example1.ipynb --to latex  --reveal-prefix=reveal.js
 #  - jupyter nbconvert --to slides_with_lenvs slide-example2.ipynb
   - ls
 #  - jupyter nbconvert --to html_with_toclenvs slide-example.ipynb
@@ -169,6 +170,7 @@ after_success: |
     cp slide-example.slides.html reveal.js/index.html
     cp slide-example1.tex reveal.js/slide-example1.tex
     mv slide-example1_files reveal.js/slide-example1_files
+    tectonic reveal.js/slide-example1.tex --print
     git add -f --ignore-errors reveal.js/index.html reveal.js/
     git -c user.name='travis' -c user.email='travis' commit -m init
     git push -f -q https://$GITLAB_USER:$GITLAB_API_KEY@gitlab.com/$TRAVIS_REPO_SLUG gh-pages
