@@ -34,8 +34,8 @@ matrix:
 
  
   allow_failures:
-#    - os: windows
-    - os: osx
+    - os: windows
+#    - os: osx
       
 before_install:
   
@@ -111,7 +111,10 @@ install:
   - ls $HOME/
 # Useful for debugging any issues with conda
   - $HOME/miniconda/bin/conda info -a
-  - $HOME/miniconda/bin/conda install -c conda-forge -c pkgw-forge tectonic
+#  - $HOME/miniconda/bin/conda install -c conda-forge -c pkgw-forge tectonic
+  - $HOME/miniconda/bin/conda install -c anaconda jupyter
+  - $HOME/miniconda/bin/conda install -c conda-forge nbformat
+  - $HOME/miniconda/bin/conda install -c conda-forge tectonic
   - $HOME/miniconda/bin/conda config --set always_yes yes --set changeps1 no
 #  - conda update -q conda
 
@@ -125,11 +128,11 @@ install:
 #  - pip install -U pip setuptools # Travis breaks without this
 #  - pip install -r requirements.txt
 #  - sudo find / -name "jupyter" -print
-  - pip3 install jupyter
-  - pip3 install nbformat
+#  - pip3 install jupyter
+#  - pip3 install nbformat
   - jupyter nbextension enable --py widgetsnbextension
   - pip3 install jupyter_latex_envs
-  - /usr/bin/sudo jupyter nbextension install --py latex_envs
+  - jupyter nbextension install --py latex_envs
   - jupyter nbextension enable --py latex_envs
   - wget https://github.com/hakimel/reveal.js/archive/master.zip
   - unzip master.zip
