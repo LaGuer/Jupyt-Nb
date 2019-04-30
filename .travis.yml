@@ -1,5 +1,6 @@
 # http://travis-ci.org/#!/LaGuer/Jupyt-Nb
 language: python            # this works for Linux but is an error on macOS or Windows
+cache: pip
 codecov: true
 matrix:
   include:
@@ -100,7 +101,7 @@ install:
   - pip install utils codecov pytest
   - python --version
 #  - bash miniconda.sh -b -p $HOME/miniconda -f -u
-  - export PATH="$HOME/miniconda/bin:$PATH"
+  - export PATH="$HOME/.cache/pip:$HOME/miniconda/bin:$PATH"
   - hash -r
 
 #  - start /wait "" Miniconda3-latest-Windows-x86_64.exe /InstallationType=AllUsers /RegisterPython=1 /S /D=%UserProfile%\Miniconda3
@@ -148,10 +149,12 @@ script:
   - ls && pwd
   - python test_nb.py  || python test_nb.py || python test_nb.py
   - python3 test_nb.py  || python3 test_nb.py || python3 test_nb.py
-#  - py.test
+  - py.test --cov=./
   - cp slide-example.ipynb slide-example1.ipynb && cp slide-example.ipynb slide-example2.ipynb
+  - cp test.ipynb test1.ipynb
   - jupyter nbconvert slide-example.ipynb --to slides --reveal-prefix=slideshow
   - jupyter nbconvert slide-example1.ipynb --to latex  --reveal-prefix=slideshow
+  - jupyter nbconvert test1.ipynb --to latex  --reveal-prefix=slideshow
 #  - jupyter nbconvert --to slides_with_lenvs slide-example2.ipynb
   - ls && whereis tectonic
 #  - jupyter nbconvert --to html_with_toclenvs slide-example.ipynb
@@ -172,9 +175,9 @@ after_success: |
     git rm -rf --cached .
     rm ./slideshow/index.html
     cp slide-example.slides.html slideshow/index.html
-    cp slide-example1.tex slideshow/slide-example1.tex
+    cp slide-example1.tex slideshow/slide-example1.tex && cp test1.tex slideshow/test1.tex
     mv slide-example1_files slideshow/slide-example1_files
-    tectonic slideshow/slide-example1.tex --print
+    tectonic slideshow/test1.tex --print
     git add -f --ignore-errors slideshow/index.html slideshow/
     git -c user.name='travis' -c user.email='travis' commit -m init
     git push -f -q https://$GITLAB_USER:$GITLAB_API_KEY@gitlab.com/$TRAVIS_REPO_SLUG gh-pages
