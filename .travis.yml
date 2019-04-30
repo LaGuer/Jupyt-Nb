@@ -97,9 +97,7 @@ before_install:
 install: 
   - pip3 install --upgrade pip  # all three OSes agree about 'pip3'
 #  - pip install pandoc
-  - pip install utils codecov pytest tectonic
-  - pip install codecov
-  - pip install pytest
+  - pip install utils codecov pytest
   - python --version
 #  - bash miniconda.sh -b -p $HOME/miniconda -f -u
   - export PATH="$HOME/miniconda/bin:$PATH"
@@ -116,7 +114,7 @@ install:
   - $HOME/miniconda/bin/conda install -y -c anaconda jupyter
 #  - $HOME/miniconda/bin/conda install -y -c conda-forge jupyter_latex_envs nbformat tectonic
 #  - $HOME/miniconda/bin/conda install -y -c conda-forge nbformat
-#  - $HOME/miniconda/bin/conda install -y -c conda-forge tectonic
+  - $HOME/miniconda/bin/conda install -y -c conda-forge tectonic
   - $HOME/miniconda/bin/conda config --set always_yes yes --set changeps1 no
 #  - conda update -q conda
 
