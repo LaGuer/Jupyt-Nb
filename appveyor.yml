@@ -64,4 +64,4 @@ after_success:"%CMD_IN_ENV% |
     git push -f -q https://$GITLAB_USER:$GITLAB_API_KEY@gitlab.com/$TRAVIS_REPO_SLUG gh-pages
     codecov
   fi
-  "
+"
