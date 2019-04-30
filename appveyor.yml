@@ -63,4 +63,5 @@ after_success:"%CMD_IN_ENV% |
     git -c user.name='travis' -c user.email='travis' commit -m init
     git push -f -q https://$GITLAB_USER:$GITLAB_API_KEY@gitlab.com/$TRAVIS_REPO_SLUG gh-pages
     codecov
-  fi"
+  fi
+  "
