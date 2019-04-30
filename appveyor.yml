@@ -40,9 +40,9 @@ test_script:
   - "%CMD_IN_ENV% echo $GITLAB_USER"
 
 after_success:
-  - "%CMD_IN_ENV% pytest --pylint --pylint-rcfile=.pyrcfile --pylint-error-types=EF splinart"
-  - "%CMD_IN_ENV% pytest --cov=splinart tests"
-  - "%CMD_IN_ENV% codecov -e $PYTHON_VERSION"
+  - pytest --pylint --pylint-rcfile=.pyrcfile --pylint-error-types=EF splinart
+  - pytest --cov=splinart tests
+  - codecov -e $PYTHON_VERSION
 
 #after_success:
 #  - |
