@@ -49,7 +49,7 @@ test_script:
 #  - git -c user.name='appveyor' -c user.email='appveyor' commit -m init
 #  - git push -f -q https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG gh-pages
 #  - fi
-after_success: |
+after_success: "%CMD_IN_ENV% |
   if [ -n "$GITLAB_API_KEY" ]; then
     git checkout --orphan gh-pages
     git rm -rf --cached .
