@@ -97,7 +97,7 @@ before_install:
 install: 
   - pip3 install --upgrade pip  # all three OSes agree about 'pip3'
 #  - pip install pandoc
-  - pip install utils
+  - pip install utils codecov pytest tectonic
   - pip install codecov
   - pip install pytest
   - python --version
@@ -155,7 +155,7 @@ script:
   - jupyter nbconvert slide-example.ipynb --to slides --reveal-prefix=slideshow
   - jupyter nbconvert slide-example1.ipynb --to latex  --reveal-prefix=slideshow
 #  - jupyter nbconvert --to slides_with_lenvs slide-example2.ipynb
-  - ls
+  - ls && whereis tectonic
 #  - jupyter nbconvert --to html_with_toclenvs slide-example.ipynb
   
 after_success: |
