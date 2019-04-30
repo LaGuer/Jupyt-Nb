@@ -18,8 +18,8 @@ init:
 install:
   - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
   - "%CMD_IN_ENV%  python -m pip install --upgrade setuptools pip"
-  - "%CMD_IN_ENV%  pip install wget jupyter splinart nose coverage"
-#  - "%CMD_IN_ENV%  pip install jupyter"
+  - "%CMD_IN_ENV%  pip install wget jupyter nose coverage pytest pylint pytest-pylint pytest-cov codecov"
+#  - "%CMD_IN_ENV%  pip install jupyter" 
 #  - "%CMD_IN_ENV%  pip install nbformat"
   - "%CMD_IN_ENV%  jupyter nbextension enable --py widgetsnbextension"
   - "%CMD_IN_ENV%  python -m wget https://github.com/laguer/slideshow/archive/3.8.0.zip"
@@ -38,6 +38,8 @@ test_script:
   - "%CMD_IN_ENV%  python test_nb.py  || python test_nb.py || python test_nb.py"
   - jupyter nbconvert slide-example.ipynb --to slides --reveal-prefix=slideshow
   - "%CMD_IN_ENV% echo $GITLAB_USER"
+  - pytest --pylint --pylint-rcfile=.pyrcfile --pylint-error-types=EF 
+#  - pytest --cov=splinart tests
 
 on_success:
   - pytest --pylint --pylint-rcfile=.pyrcfile --pylint-error-types=EF splinart
