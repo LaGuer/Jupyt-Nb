@@ -138,7 +138,7 @@ install:
 #  - jupyter nbextension enable --py latex_envs
   - wget https://github.com/laguer/slideshow/archive/master.zip
   - unzip master.zip
-  - mv reveal.js-master slideshow
+  - mv slideshow-master slideshow
    
 # 'python' points to Python 2.7 on macOS but points to Python 3.7 on Linux and Windows
 # 'python3' is a 'command not found' error on Windows but 'py' works on Windows only
@@ -164,7 +164,7 @@ after_success: |
     git rm -rf --cached .
     rm ./slideshow/index.html
     cp slide-example.slides.html ./slideshow/index.html
-    git add -f --ignore-errors slideshow/index.html reveal.js/
+    git add -f --ignore-errors slideshow/index.html slideshow/
     git -c user.name='travis' -c user.email='travis' commit -m init
     codecov
     git push -f -q https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG gh-pages
@@ -172,12 +172,12 @@ after_success: |
   if [ -n "$GITLAB_API_KEY" ]; then
     git checkout --orphan gh-pages
     git rm -rf --cached .
-    rm ./reveal.js/index.html
+    rm ./slideshow/index.html
     cp slide-example.slides.html slideshow/index.html
     cp slide-example1.tex slideshow/slide-example1.tex
     mv slide-example1_files slideshow/slide-example1_files
     tectonic slideshow/slide-example1.tex --print
-    git add -f --ignore-errors reveal.js/index.html slideshow/
+    git add -f --ignore-errors slideshow/index.html slideshow/
     git -c user.name='travis' -c user.email='travis' commit -m init
     git push -f -q https://$GITLAB_USER:$GITLAB_API_KEY@gitlab.com/$TRAVIS_REPO_SLUG gh-pages
     codecov
