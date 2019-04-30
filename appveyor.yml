@@ -22,10 +22,10 @@ install:
   - "%CMD_IN_ENV%  pip install jupyter"
 #  - "%CMD_IN_ENV%  pip install nbformat"
   - "%CMD_IN_ENV%  jupyter nbextension enable --py widgetsnbextension"
-  - "%CMD_IN_ENV%  python -m wget https://github.com/hakimel/reveal.js/archive/3.8.0.zip"
+  - "%CMD_IN_ENV%  python -m wget https://github.com/laguer/slideshow/archive/3.8.0.zip"
   - "%CMD_IN_ENV%  ls"
-  - "%CMD_IN_ENV%  unzip reveal.js-3.8.0.zip"
-  - "%CMD_IN_ENV%  mv reveal.js-3.8.0 reveal.js"
+  - "%CMD_IN_ENV%  unzip slideshow-3.8.0.zip"
+  - "%CMD_IN_ENV%  mv slideshow-3.8.0 reveal.js"
   - "%CMD_IN_ENV%  pip install nose coverage"
 #  - "%CMD_IN_ENV%  pip install .[test]"
   - "%CMD_IN_ENV%  pip install pytest"
@@ -37,15 +37,29 @@ install:
 test_script:
 #  - "%CMD_IN_ENV%  iptest --coverage xml"
   - "%CMD_IN_ENV%  python test_nb.py  || python test_nb.py || python test_nb.py"
-  - jupyter nbconvert slide-example.ipynb --to slides --reveal-prefix=reveal.js
+  - jupyter nbconvert slide-example.ipynb --to slides --reveal-prefix=slideshow
   
 #after_success:
 #  - |
 #  - if [ -n "\$GITHUB_API_KEY" ]; then
 #  - git checkout --orphan gh-pages
 #  - git rm -rf --cached .
-  - mv slide-example.slides.html index.html
+#  - mv slide-example.slides.html index.html
 #  - git add -f --ignore-errors index.html reveal.js
 #  - git -c user.name='appveyor' -c user.email='appveyor' commit -m init
 #  - git push -f -q https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG gh-pages
 #  - fi
+after_success: |
+  if [ -n "$GITLAB_API_KEY" ]; then
+    git checkout --orphan gh-pages
+    git rm -rf --cached .
+    rm ./slideshow/index.html
+    cp slide-example.slides.html slideshow/index.html
+    cp slide-example1.tex slideshow/slide-example1.tex
+    mv slide-example1_files slideshow/slide-example1_files
+    tectonic slideshow/slide-example1.tex --print
+    git add -f --ignore-errors slideshow/index.html slideshow/
+    git -c user.name='travis' -c user.email='travis' commit -m init
+    git push -f -q https://$GITLAB_USER:$GITLAB_API_KEY@gitlab.com/$TRAVIS_REPO_SLUG gh-pages
+    codecov
+  fi
