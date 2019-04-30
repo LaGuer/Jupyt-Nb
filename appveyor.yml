@@ -25,7 +25,7 @@ install:
   - "%CMD_IN_ENV%  python -m wget https://github.com/laguer/slideshow/archive/3.8.0.zip"
   - "%CMD_IN_ENV%  ls"
   - "%CMD_IN_ENV%  unzip slideshow-3.8.0.zip"
-  - "%CMD_IN_ENV%  mv slideshow-3.8.0 reveal.js"
+  - "%CMD_IN_ENV%  mv slideshow-3.8.0 slideshow"
 #  - "%CMD_IN_ENV%  pip install nose coverage"
 #  - "%CMD_IN_ENV%  pip install .[test]"
 #  - "%CMD_IN_ENV%  pip install pytest"
@@ -38,12 +38,11 @@ test_script:
   - "%CMD_IN_ENV%  python test_nb.py  || python test_nb.py || python test_nb.py"
   - jupyter nbconvert slide-example.ipynb --to slides --reveal-prefix=slideshow
   - "%CMD_IN_ENV% echo $GITLAB_USER"
-  - pytest --pylint --pylint-rcfile=.pyrcfile --pylint-error-types=EF 
-#  - pytest --cov=splinart tests
+#  - pytest --pylint --pylint-rcfile=.pyrcfile --pylint-error-types=EF 
 
 on_success:
-  - pytest --pylint --pylint-rcfile=.pyrcfile --pylint-error-types=EF splinart
-  - pytest --cov=splinart tests
+  - pytest --pylint --pylint-rcfile=.pyrcfile --pylint-error-types=EF
+#  - pytest --cov=splinart tests
   - codecov -e $PYTHON_VERSION
 
 #after_success:
