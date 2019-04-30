@@ -39,7 +39,7 @@ test_script:
   - jupyter nbconvert slide-example.ipynb --to slides --reveal-prefix=slideshow
   - "%CMD_IN_ENV% echo $GITLAB_USER"
 
-after_success:
+on_success:
   - pytest --pylint --pylint-rcfile=.pyrcfile --pylint-error-types=EF splinart
   - pytest --cov=splinart tests
   - codecov -e $PYTHON_VERSION
