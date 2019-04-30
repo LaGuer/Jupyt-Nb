@@ -2,7 +2,7 @@
 
 **Julia Jupyter Notebook**
 
-[![Latest PDF](https://img.shields.io/badge/PDF-latest-orange.svg?style=flat)](https://latexonline.cc/compile?git=https%3A%2F%2FLaGuer.gitlab.io%2FJupyt-Nb%2Freveal.js&target=slide-example1.tex&command=pdflatex)
+[![Latest PDF](https://img.shields.io/badge/PDF-latest-orange.svg?style=flat)](https%3A%2F%2Fgitlab.com%2FLaGuer%2FJupyt-Nb%2Fblob%2Ffeb1e19d07391f83751e376fbf709f2fc4c4058f%2Freveal.js&target=slide-example1.tex&command=pdflatex)
 
 [![codecov](https://codecov.io/gh/LaGuer/Jupyt-Nb/branch/master/graph/badge.svg)](https://codecov.io/gh/LaGuer/Jupyt-Nb)
 
