@@ -2,6 +2,8 @@
 
 **Julia Jupyter Notebook**
 
+[![Latest PDF](https://img.shields.io/badge/PDF-latest-orange.svg?style=flat)](https://latexonline.cc/compile?git=https%3A%2F%2Fgitlab.com%2FLaGuer%2FJupyt-Nb%2Fblob%2Fgh-pages%2Freveal.js&target=slide-example1.tex&command=pdflatex)
+
 [![codecov](https://codecov.io/gh/LaGuer/Jupyt-Nb/branch/master/graph/badge.svg)](https://codecov.io/gh/LaGuer/Jupyt-Nb)
 
 [![Coverage Status](https://coveralls.io/repos/github/LaGuer/Jupyt-Nb/badge.svg?branch=master)](https://coveralls.io/github/LaGuer/Jupyt-Nb?branch=master)
