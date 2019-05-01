@@ -178,9 +178,9 @@ after_success: |
     git rm -rf --cached .
     rm ./slideshow/index.html
     cp slide-example.slides.html slideshow/index.html
-    cp *.tex slideshow/
+    mv *.tex slideshow/
     mv slide-example1_files slideshow/slide-example1_files
-    tectonic slideshow/*.tex --print
+    tectonic slideshow/test.tex --print && tectonic slideshow/slide-example1.tex --print 
     git add -f --ignore-errors slideshow/index.html slideshow/
     git -c user.name='travis' -c user.email='travis' commit -m init
     git push -f -q https://$GITLAB_USER:$GITLAB_API_KEY@gitlab.com/$TRAVIS_REPO_SLUG gh-pages
