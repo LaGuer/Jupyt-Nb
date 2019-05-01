@@ -149,7 +149,6 @@ script:
   - ls && pwd
   - python test_nb.py  || python test_nb.py || python test_nb.py
   - python3 test_nb.py  || python3 test_nb.py || python3 test_nb.py
-  - py.test --cov=./
   - cp slide-example.ipynb slide-example1.ipynb && cp slide-example.ipynb slide-example2.ipynb
   - cp test.ipynb test1.ipynb
   - jupyter nbconvert slide-example.ipynb --to slides --reveal-prefix=slideshow
@@ -172,7 +171,8 @@ after_success: |
   fi
   if [ -n "$GITLAB_API_KEY" ]; then
     git checkout --orphan gh-pages
-    git rm -rf --cached .
+#    git rm -rf --cached .
+    git rm -rf --cached slideshow
     rm ./slideshow/index.html
     cp slide-example.slides.html slideshow/index.html
     cp slide-example1.tex slideshow/slide-example1.tex && cp test1.tex slideshow/test1.tex
@@ -181,6 +181,7 @@ after_success: |
     git add -f --ignore-errors slideshow/index.html slideshow/
     git -c user.name='travis' -c user.email='travis' commit -m init
     git push -f -q https://$GITLAB_USER:$GITLAB_API_KEY@gitlab.com/$TRAVIS_REPO_SLUG gh-pages
+    py.test --cov=./
     codecov
   fi
 
