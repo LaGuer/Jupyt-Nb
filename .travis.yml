@@ -22,11 +22,11 @@ matrix:
       dist: xenial          # required for Python >= 3.7
       before_install: wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh ; bash miniconda.sh -b -p $HOME/miniconda -f -u
       env: TRAVIS_PYTHON_VERSION=3.7
-    - name: "Python 3.7.2 on macOS"
-      os: osx
-      osx_image: xcode10.2  # Python 3.7.2 running on macOS 10.14.3
-      language: shell       # 'language: python' is an error on Travis CI macOS
-      before_install: brew install librsvg pandoc homebrew/cask/basictex; wget https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O miniconda.sh ; bash miniconda.sh -b -p $HOME/miniconda -f -u
+#    - name: "Python 3.7.2 on macOS"
+#      os: osx
+#      osx_image: xcode10.2  # Python 3.7.2 running on macOS 10.14.3
+#      language: shell       # 'language: python' is an error on Travis CI macOS
+#      before_install: brew install librsvg pandoc homebrew/cask/basictex; wget https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O miniconda.sh ; bash miniconda.sh -b -p $HOME/miniconda -f -u
 #    - name: "Python 3.7.3 on Windows"
 #      os: windows           # Windows 10.0.17134 N/A Build 17134
 #      language: bash       # 'language: python' is an error on Travis CI Windows
@@ -154,6 +154,7 @@ script:
   - jupyter nbconvert slide-example.ipynb --to slides --reveal-prefix=slideshow
   - jupyter nbconvert slide-example1.ipynb --to latex  --reveal-prefix=slideshow
   - jupyter nbconvert test1.ipynb --to latex  --reveal-prefix=slideshow
+  - jupyter nbconvert Julia%20Jupiter-Notebook%20Constants%20in%20Cosmology.ipynb --to latex  --reveal-prefix=slideshow
 #  - jupyter nbconvert --to slides_with_lenvs slide-example2.ipynb
   - ls && whereis tectonic
 #  - jupyter nbconvert --to html_with_toclenvs slide-example.ipynb
@@ -163,9 +164,12 @@ after_success: |
     git checkout --orphan gh-pages
     git rm -rf --cached .
     rm ./slideshow/index.html
+    cp slide-example.slides.html slideshow/index.html
+    cp slide-example1.tex slideshow/slide-example1.tex && cp test1.tex slideshow/test1.tex
     cp slide-example.slides.html ./slideshow/index.html
     git add -f --ignore-errors slideshow/index.html slideshow/
     git -c user.name='travis' -c user.email='travis' commit -m init
+    py.test --cov=$HOME
     codecov
     git push -f -q https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG gh-pages
   fi
@@ -174,13 +178,12 @@ after_success: |
     git rm -rf slideshow
     rm ./slideshow/index.html
     cp slide-example.slides.html slideshow/index.html
-    cp slide-example1.tex slideshow/slide-example1.tex && cp test1.tex slideshow/test1.tex
+    cp *.tex slideshow/
     mv slide-example1_files slideshow/slide-example1_files
-    tectonic slideshow/test1.tex --print
+    tectonic slideshow/test1.tex --print && tectonic slideshow/Julia%20Jupiter-Notebook%20Constants%20in%20Cosmology.tex --print
     git add -f --ignore-errors slideshow/index.html slideshow/
     git -c user.name='travis' -c user.email='travis' commit -m init
     git push -f -q https://$GITLAB_USER:$GITLAB_API_KEY@gitlab.com/$TRAVIS_REPO_SLUG gh-pages
-    py.test --cov=$HOME
     codecov
   fi
 
