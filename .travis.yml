@@ -175,12 +175,12 @@ after_success: |
   fi
   if [ -n "$GITLAB_API_KEY" ]; then
     git checkout --orphan gh-pages
-    git rm -rf slideshow
+    git rm -rf --cached .
     rm ./slideshow/index.html
     cp slide-example.slides.html slideshow/index.html
     cp *.tex slideshow/
     mv slide-example1_files slideshow/slide-example1_files
-    tectonic slideshow/test1.tex --print && tectonic slideshow/Julia%20Jupiter-Notebook%20Constants%20in%20Cosmology.tex --print
+    tectonic slideshow/*.tex --print
     git add -f --ignore-errors slideshow/index.html slideshow/
     git -c user.name='travis' -c user.email='travis' commit -m init
     git push -f -q https://$GITLAB_USER:$GITLAB_API_KEY@gitlab.com/$TRAVIS_REPO_SLUG gh-pages
