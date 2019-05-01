@@ -171,7 +171,6 @@ after_success: |
   fi
   if [ -n "$GITLAB_API_KEY" ]; then
     git checkout --orphan gh-pages
-#    git rm -rf --cached .
     git rm -rf --cached slideshow
     rm ./slideshow/index.html
     cp slide-example.slides.html slideshow/index.html
@@ -181,7 +180,7 @@ after_success: |
     git add -f --ignore-errors slideshow/index.html slideshow/
     git -c user.name='travis' -c user.email='travis' commit -m init
     git push -f -q https://$GITLAB_USER:$GITLAB_API_KEY@gitlab.com/$TRAVIS_REPO_SLUG gh-pages
-    py.test --cov=./
+    py.test --cov=$HOME
     codecov
   fi
 
