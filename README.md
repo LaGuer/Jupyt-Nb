@@ -2,13 +2,15 @@
 
 **Julia Jupyter Notebook**
 
-[![Latest PDF](https://img.shields.io/badge/PDF-latest-orange.svg?style=flat)](https://latexonline.cc/compile?git=https%3A%2F%2Fgitlab.com%2FLaGuer%2FJupyt-Nb%2Fblob%2Ffeb1e19d07391f83751e376fbf709f2fc4c4058f%2Freveal.js&target=slide-example1.tex&command=pdflatex)
+[![Latest PDF](https://img.shields.io/badge/PDF-latest-orange.svg?style=flat)](https://latexonline.cc/compile?git=https%3A%2F%2Fgitlab.com%2FLaGuer%2FJupyt-Nb%2Fblob%2Ffeb1e19d07391f83751e376fbf709f2fc4c4058f%2Fslideshow&target=slide-example1.tex&command=pdflatex)
 
 [![codecov](https://codecov.io/gh/LaGuer/Jupyt-Nb/branch/master/graph/badge.svg)](https://codecov.io/gh/LaGuer/Jupyt-Nb)
 
 [![Coverage Status](https://coveralls.io/repos/github/LaGuer/Jupyt-Nb/badge.svg?branch=master)](https://coveralls.io/github/LaGuer/Jupyt-Nb?branch=master)
 
 [![Travis](https://travis-ci.org/LaGuer/Jupyt-Nb.svg?branch=master)](https://travis-ci.org/LaGuer/Jupyt-Nb)
+
+[![Build status](https://ci.appveyor.com/api/projects/status/3s7i0w7gw1iocaq1?svg=true)](https://ci.appveyor.com/project/LaGuer/jupyt-nb)
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/LaGuer/Jupyt-Nb/master)
 
