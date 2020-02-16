@@ -147,7 +147,6 @@ install:
   - wget https://github.com/laguer/slideshow/archive/master.zip
   - unzip master.zip
   - mv slideshow-master slideshow
-  - nbpublish Jupyt-Nb
    
 # 'python' points to Python 2.7 on macOS but points to Python 3.7 on Linux and Windows
 # 'python3' is a 'command not found' error on Windows but 'py' works on Windows only
@@ -157,6 +156,8 @@ script:
 #  - sudo find / -name "sudo" -print
 #  - build/LaGuer/Jupyter-Notebook-Practice-Physical-Constants-Ratios/test_nb.py
   - ls && pwd
+  - wget https://github.com/laguer/hubble-radius/master/hubble-radius.ipynb
+  - nbpublish hubble-radius.ipynb
   - python test_nb.py  || python test_nb.py || python test_nb.py
   - python3 test_nb.py  || python3 test_nb.py || python3 test_nb.py
   - cp slide-example.ipynb slide-example1.ipynb && cp slide-example.ipynb slide-example2.ipynb
@@ -189,10 +190,12 @@ after_success: |
     git rm -rf --cached .
     rm ./slideshow/index.html
     cp slide-example.slides.html slideshow/index.html
+    cp hubble-radius.ipynb slideshow/hubble-radius.ipynb
     mv *.tex slideshow/
     mv slide-example1_files slideshow/slide-example1_files
     tectonic slideshow/test.tex --print && tectonic slideshow/slide-example1.tex --print 
     git add -f --ignore-errors slideshow/index.html slideshow/
+    git add -f --ignore-errors slideshow/hubble-radius.ipynb slideshow/
     git -c user.name='travis' -c user.email='travis' commit -m init
     git push -f -q https://$GITLAB_USER:$GITLAB_API_KEY@gitlab.com/$TRAVIS_REPO_SLUG gh-pages
     codecov
