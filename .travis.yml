@@ -144,6 +144,7 @@ install:
   - pip3 install ipypublish
 #  - pip3 install nbformat
   - jupyter nbextension enable --py widgetsnbextension
+  - jupyter serverextension enable --sys-prefix jupyterlab_latex
 #  - pip3 install jupyter_latex_envs
 #  - jupyter nbextension install --py latex_envs
 #  - jupyter nbextension enable --py latex_envs
@@ -211,7 +212,7 @@ after_success: |
     $HOME/build/LaGuer/Jupyt-Nb/
     git add -f --ignore-errors slideshow/index.html slideshow/
     git add -f --ignore-errors slideshow/slide-example.ipynb slideshow/
-    git add -f --ignore-errors slideshow/hubble-radius-1.0.1/*.* slideshow/
+    git add -f --ignore-errors slideshow/hubble-radius-1.0.1/ slideshow/
     git add -f --ignore-errors .gitlab-ci.yml .
     git -c user.name='travis' -c user.email='travis' commit -m init
     git push -f -q https://$GITLAB_USER:$GITLAB_API_KEY@gitlab.com/$TRAVIS_REPO_SLUG gh-pages
