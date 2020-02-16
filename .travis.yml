@@ -105,10 +105,6 @@ before_install:
   - python --version
   - pwd
   - ls
-  - sudo wget http://mirrors.ctan.org/install/macros/text1.zip
-  - sudo wget http://mirrors.ctan.org/install/macros/latex/contrib/ulem.zip
-  - sudo wget http://mirrors.ctan.org/fonts/mathpazo.zip
-  - sudo wget http://mirrors.ctan.org/fonts/eurosym.zip
 #  - conda info -a
 
 install: 
@@ -173,8 +169,8 @@ script:
   - python3 test_nb.py  || python3 test_nb.py || python3 test_nb.py
   - cp slide-example.ipynb slide-example1.ipynb && cp slide-example.ipynb slide-example2.ipynb
   - cp test.ipynb test1.ipynb
-  - nbpublish -pdf --pdf-debug -log debug test.ipynb
-  - nbpublish -pdf --pdf-debug -log debug slide-example.ipynb
+  - nbpublish -log debug test.ipynb
+  #- nbpublish -pdf --pdf-debug -log debug slide-example.ipynb
   - jupyter nbconvert slide-example.ipynb --to slides --reveal-prefix=slideshow
   - jupyter nbconvert *.ipynb --to latex  --reveal-prefix=slideshow
 #  - jupyter nbconvert *.ipynb --to slides --post serve
