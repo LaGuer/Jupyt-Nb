@@ -202,7 +202,7 @@ after_success: |
     cp hubble-radius.ipynb slideshow/hubble-radius.ipynb
     mv *.tex slideshow/
     mv slide-example1_files slideshow/slide-example1_files
-    tectonic slideshow/test.tex --print && tectonic slideshow/slide-example1.tex --print 
+    # tectonic slideshow/test.tex --print && tectonic slideshow/slide-example1.tex --print 
     git add -f --ignore-errors slideshow/index.html slideshow/
     git add -f --ignore-errors slideshow/slide-example.ipynb slideshow/
     git -c user.name='travis' -c user.email='travis' commit -m init
