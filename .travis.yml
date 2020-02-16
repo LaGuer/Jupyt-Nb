@@ -102,6 +102,10 @@ before_install:
   - python --version
   - pwd
   - ls
+  - sudo wget http://mirrors.ctan.org/install/macros/text1.zip
+  - sudo wget http://mirrors.ctan.org/install/macros/latex/contrib/ulem.zip
+  - sudo wget http://mirrors.ctan.org/fonts/mathpazo.zip
+  - sudo wget http://mirrors.ctan.org/fonts/eurosym.zip
 #  - conda info -a
 
 install: 
@@ -147,6 +151,10 @@ install:
   - wget https://github.com/laguer/slideshow/archive/master.zip
   - unzip master.zip
   - mv slideshow-master slideshow
+  - wget https://github.com/LaGuer/hubble-radius/archive/v1.0.1.zip
+  - unzip v1.0.1.zip
+  - ls -lart
+
    
 # 'python' points to Python 2.7 on macOS but points to Python 3.7 on Linux and Windows
 # 'python3' is a 'command not found' error on Windows but 'py' works on Windows only
@@ -157,7 +165,7 @@ script:
 #  - build/LaGuer/Jupyter-Notebook-Practice-Physical-Constants-Ratios/test_nb.py
   - ls && pwd
   #- wget https://github.com/laguer/hubble-radius/master/hubble-radius.ipynb
-  - tlmgr list --only-installed
+  #- tlmgr list --only-installed
   - python test_nb.py  || python test_nb.py || python test_nb.py
   - python3 test_nb.py  || python3 test_nb.py || python3 test_nb.py
   - cp slide-example.ipynb slide-example1.ipynb && cp slide-example.ipynb slide-example2.ipynb
