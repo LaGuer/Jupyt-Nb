@@ -2,6 +2,10 @@ dependencies:
 #  - julia
   - matplotlib
   - numpy
+  - scipy
+  - sympy
+  - AstroML
+  - Quantities
   - pip
   - pytest
   - pip:
