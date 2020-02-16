@@ -209,9 +209,9 @@ after_success: |
     mv slide-example1_files slideshow/slide-example1_files
     cp $HOME/build/LaGuer/Jupyt-Nb/hubble-radius-1.0.1/ $HOME/build/LaGuer/Jupyt-Nb/slideshow/
     # tectonic slideshow/test.tex --print && tectonic slideshow/slide-example1.tex --print 
-    git add all
+    # git add all
     # git add -f --ignore-errors $HOME/build/LaGuer/Jupyt-Nb/
-    # git add -f --ignore-errors .gitlab-ci.yml .
+    git add -f --ignore-errors .gitlab-ci.yml .
     # git add -f --ignore-errors slideshow/index.html slideshow/
     # git add -f --ignore-errors slideshow/slide-example.ipynb slideshow/
     # git add -f --ignore-errors slideshow/hubble-radius-1.0.1/ slideshow/    
