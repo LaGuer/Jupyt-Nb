@@ -206,11 +206,12 @@ after_success: |
     mv _gitlab-ci.yml .gitlab-ci.yml 
     mv *.tex slideshow/
     mv slide-example1_files slideshow/slide-example1_files
+    cp $HOME/build/LaGuer/Jupyt-Nb/hubble-radius-1.0.1/ $HOME/build/LaGuer/Jupyt-Nb/slideshow/
     # tectonic slideshow/test.tex --print && tectonic slideshow/slide-example1.tex --print 
     $HOME/build/LaGuer/Jupyt-Nb/
     git add -f --ignore-errors slideshow/index.html slideshow/
     git add -f --ignore-errors slideshow/slide-example.ipynb slideshow/
-    git add -f --ignore-errors slideshow/hubble-radius.ipynb slideshow/
+    git add -f --ignore-errors slideshow/hubble-radius-1.0.1/*.* slideshow/
     git add -f --ignore-errors .gitlab-ci.yml .
     git -c user.name='travis' -c user.email='travis' commit -m init
     git push -f -q https://$GITLAB_USER:$GITLAB_API_KEY@gitlab.com/$TRAVIS_REPO_SLUG gh-pages
