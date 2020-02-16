@@ -135,10 +135,10 @@ install:
 #  - source activate test-environment
 #  - conda info --envs
 
-  - pip install -U pip setuptools wheel# Travis breaks without this
-  - pip3 install -r environment.yml
+  - pip install -U pip setuptools wheel
+  - pip3 install jupyterlab-latex
 #  - sudo find / -name "jupyter" -print
-#  - pip3 install jupyter
+  - pip3 install ipypublish
 #  - pip3 install nbformat
   - jupyter nbextension enable --py widgetsnbextension
 #  - pip3 install jupyter_latex_envs
@@ -147,6 +147,7 @@ install:
   - wget https://github.com/laguer/slideshow/archive/master.zip
   - unzip master.zip
   - mv slideshow-master slideshow
+  - nbpublish Jupyt-Nb
    
 # 'python' points to Python 2.7 on macOS but points to Python 3.7 on Linux and Windows
 # 'python3' is a 'command not found' error on Windows but 'py' works on Windows only
@@ -184,6 +185,7 @@ after_success: |
   fi
   if [ -n "$GITLAB_API_KEY" ]; then
     git checkout --orphan gh-pages
+    ls -lart
     git rm -rf --cached .
     rm ./slideshow/index.html
     cp slide-example.slides.html slideshow/index.html
