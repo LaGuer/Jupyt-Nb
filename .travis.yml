@@ -156,12 +156,13 @@ script:
 #  - sudo find / -name "sudo" -print
 #  - build/LaGuer/Jupyter-Notebook-Practice-Physical-Constants-Ratios/test_nb.py
   - ls && pwd
-  - wget https://github.com/laguer/hubble-radius/master/hubble-radius.ipynb
-  - nbpublish hubble-radius.ipynb
+  #- wget https://github.com/laguer/hubble-radius/master/hubble-radius.ipynb
+
   - python test_nb.py  || python test_nb.py || python test_nb.py
   - python3 test_nb.py  || python3 test_nb.py || python3 test_nb.py
   - cp slide-example.ipynb slide-example1.ipynb && cp slide-example.ipynb slide-example2.ipynb
   - cp test.ipynb test1.ipynb
+  - nbpublish -pdf -log debug slide-example.ipynb
   - jupyter nbconvert slide-example.ipynb --to slides --reveal-prefix=slideshow
   - jupyter nbconvert *.ipynb --to latex  --reveal-prefix=slideshow
 #  - jupyter nbconvert *.ipynb --to slides --post serve
@@ -195,7 +196,7 @@ after_success: |
     mv slide-example1_files slideshow/slide-example1_files
     tectonic slideshow/test.tex --print && tectonic slideshow/slide-example1.tex --print 
     git add -f --ignore-errors slideshow/index.html slideshow/
-    git add -f --ignore-errors slideshow/hubble-radius.ipynb slideshow/
+    git add -f --ignore-errors slideshow/slide-example.ipynb slideshow/
     git -c user.name='travis' -c user.email='travis' commit -m init
     git push -f -q https://$GITLAB_USER:$GITLAB_API_KEY@gitlab.com/$TRAVIS_REPO_SLUG gh-pages
     codecov
