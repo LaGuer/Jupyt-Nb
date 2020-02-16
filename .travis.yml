@@ -153,6 +153,7 @@ install:
   - mv slideshow-master slideshow
   - wget https://github.com/LaGuer/hubble-radius/archive/v1.0.1.zip
   - unzip v1.0.1.zip
+  - mv hubble-radius-1.0.1 slideshow/hubble-radius
   - ls -lart
 
    
@@ -174,8 +175,8 @@ script:
   #- nbpublish -pdf --pdf-debug -log debug slide-example.ipynb
   - jupyter nbconvert slide-example.ipynb --to slides --reveal-prefix=slideshow
   - jupyter nbconvert *.ipynb --to latex  --reveal-prefix=slideshow
-  - jupyter nbconvert hubble-radius-1.0.1/hubble-radius.ipynb --to slides --reveal-prefix=slideshow
-  - jupyter nbconvert hubble-radius-1.0.1/*.ipynb --to latex  --reveal-prefix=slideshow  
+  - jupyter nbconvert slideshow/hubble-radius/hubble-radius.ipynb --to slides --reveal-prefix=slideshow
+  - jupyter nbconvert slideshow/hubble-radius/*.ipynb --to latex  --reveal-prefix=slideshow  
 #  - jupyter nbconvert *.ipynb --to slides --post serve
 #  - jupyter nbconvert test1.ipynb --to latex  --reveal-prefix=slideshow
 #  - jupyter nbconvert --to slides_with_lenvs slide-example2.ipynb
@@ -207,8 +208,8 @@ after_success: |
     cp _gitlab-ci.yml .gitlab-ci.yml 
     mv *.tex slideshow/
     mv slide-example1_files slideshow/slide-example1_files
-    cp $HOME/build/LaGuer/Jupyt-Nb/hubble-radius-1.0.1/ $HOME/build/LaGuer/Jupyt-Nb/slideshow/
-    tectonic slideshow/test.tex --print && tectonic slideshow/slide-example1.tex --print 
+    # cp $HOME/build/LaGuer/Jupyt-Nb/hubble-radius-1.0.1/ $HOME/build/LaGuer/Jupyt-Nb/slideshow/
+    # tectonic slideshow/test.tex --print && tectonic slideshow/slide-example1.tex --print 
     # git add all
     # git add -f --ignore-errors $HOME/build/LaGuer/Jupyt-Nb/    
     git add -f --ignore-errors slideshow/index.html slideshow/    
