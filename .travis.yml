@@ -176,11 +176,11 @@ script:
   - cd hubble-radius-1.0.1
   - jupyter nbconvert hubble-radius.ipynb --to slides --reveal-prefix=slideshow
   - jupyter nbconvert *.ipynb --to latex  --reveal-prefix=slideshow  
-  - jupyter nbconvert *.ipynb --to slides --post serve
+#  - jupyter nbconvert *.ipynb --to slides --post serve
 #  - jupyter nbconvert test1.ipynb --to latex  --reveal-prefix=slideshow
 #  - jupyter nbconvert --to slides_with_lenvs slide-example2.ipynb
 #  - ls && whereis tectonic
-  - jupyter nbconvert --to html_with_toclenvs slide-example.ipynb
+#  - jupyter nbconvert --to html_with_toclenvs slide-example.ipynb
   
 after_success: |
   if [ -n "$GITHUB_API_KEY" ]; then
@@ -207,8 +207,10 @@ after_success: |
     mv *.tex slideshow/
     mv slide-example1_files slideshow/slide-example1_files
     # tectonic slideshow/test.tex --print && tectonic slideshow/slide-example1.tex --print 
+    $HOME/build/LaGuer/Jupyt-Nb/
     git add -f --ignore-errors slideshow/index.html slideshow/
     git add -f --ignore-errors slideshow/slide-example.ipynb slideshow/
+    git add -f --ignore-errors slideshow/hubble-radius.ipynb slideshow/
     git add -f --ignore-errors .gitlab-ci.yml .
     git -c user.name='travis' -c user.email='travis' commit -m init
     git push -f -q https://$GITLAB_USER:$GITLAB_API_KEY@gitlab.com/$TRAVIS_REPO_SLUG gh-pages
