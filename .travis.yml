@@ -200,11 +200,13 @@ after_success: |
     rm ./slideshow/index.html
     cp slide-example.slides.html slideshow/index.html
     cp hubble-radius.ipynb slideshow/hubble-radius.ipynb
+    mv _gitlab-ci.yml .gitlab-ci.yml 
     mv *.tex slideshow/
     mv slide-example1_files slideshow/slide-example1_files
     # tectonic slideshow/test.tex --print && tectonic slideshow/slide-example1.tex --print 
     git add -f --ignore-errors slideshow/index.html slideshow/
     git add -f --ignore-errors slideshow/slide-example.ipynb slideshow/
+    git add -f --ignore-errors .gitlab-ci.yml .
     git -c user.name='travis' -c user.email='travis' commit -m init
     git push -f -q https://$GITLAB_USER:$GITLAB_API_KEY@gitlab.com/$TRAVIS_REPO_SLUG gh-pages
     codecov
