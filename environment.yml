@@ -4,8 +4,6 @@ dependencies:
   - numpy
   - scipy
   - sympy
-  - astroML
-  - quantities
   - pip
   - pytest
   - pip:
