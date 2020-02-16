@@ -157,12 +157,13 @@ script:
 #  - build/LaGuer/Jupyter-Notebook-Practice-Physical-Constants-Ratios/test_nb.py
   - ls && pwd
   #- wget https://github.com/laguer/hubble-radius/master/hubble-radius.ipynb
-
+  - tlmgr list --only-installed
   - python test_nb.py  || python test_nb.py || python test_nb.py
   - python3 test_nb.py  || python3 test_nb.py || python3 test_nb.py
   - cp slide-example.ipynb slide-example1.ipynb && cp slide-example.ipynb slide-example2.ipynb
   - cp test.ipynb test1.ipynb
-  - nbpublish -pdf -log debug slide-example.ipynb
+  - nbpublish -pdf --pdf-debug -log debug test.ipynb
+  - nbpublish -pdf --pdf-debug -log debug slide-example.ipynb
   - jupyter nbconvert slide-example.ipynb --to slides --reveal-prefix=slideshow
   - jupyter nbconvert *.ipynb --to latex  --reveal-prefix=slideshow
 #  - jupyter nbconvert *.ipynb --to slides --post serve
