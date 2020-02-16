@@ -7,4 +7,4 @@ dependencies:
   - pip
   - pytest
   - pip:
-      - julia 1.1
+      - julia
