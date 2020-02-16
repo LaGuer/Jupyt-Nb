@@ -16,6 +16,7 @@ matrix:
             - texlive-fonts-extra
             - texlive-fonts-recommended
             - texlive-latex-recommended
+            - texlive-generic-recommended
             - texlive-xetex
             - dvipng
             - xzdec
@@ -82,7 +83,6 @@ before_install:
   - python --version
 #  - wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
   - wget http://mirrors.ctan.org/install/macros/text1.zip
-  - wget http://mirrors.ctan.org/install/macros/latex/contrib/ulem.zip
   - wget http://mirrors.ctan.org/fonts/mathpazo.zip
   - wget http://mirrors.ctan.org/fonts/eurosym.zip
 #  - bash miniconda.sh -b -p $HOME/miniconda -f -u
