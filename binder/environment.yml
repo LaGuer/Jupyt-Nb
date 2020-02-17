@@ -1,0 +1,25 @@
+name: Jupyt-Nb
+#channels:
+#  - conda-forge
+dependencies:
+  - python =3.7
+  - numpy
+  - matplotlib
+  - pandas
+  - sympy
+  - scipy
+  - quantities
+  - astroML
+  - healpy
+  - pillow
+  - ipywidgets
+  - jupyterlab =1.2.6
+  - notebook >=6.0.*
+  - pip
+  - pytest
+  - pip:
+      - julia
+      - nbval
+      - nbdime
+      - jupyterlab_latex
+      - ipypublish
