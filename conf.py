@@ -256,7 +256,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'mathswithpython', 'Maths with Python Documentation',
+    (master_doc, 'Jupyt-Nb.tex', 'Jupyter Notebook Documentation',
      [author], 1)
 ]
 
@@ -270,7 +270,7 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, Jupyt-Nb.tex', 'Jupyter Notebook Documentation,
+    (master_doc, 'Jupyt-Nb.tex', 'Jupyter Notebook Documentation',
      author, 'JupyterNotebook', 'One line description of project.',
      'Miscellaneous'),
 ]
