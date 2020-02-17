@@ -1,6 +1,6 @@
 # set -ex
 # pip install .
-jupyter labextension install @jupyterlab/latex@0.6.1
+jupyter labextension install @jupyterlab/latex@1.0.0
 #wget http://mirrors.ctan.org/install/macros/text1.zip
 #wget http://mirrors.ctan.org/install/macros/latex/contrib/ulem.zip
 #wget http://mirrors.ctan.org/fonts/mathpazo.zip
