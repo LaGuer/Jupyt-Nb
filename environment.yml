@@ -4,9 +4,9 @@ dependencies:
   - numpy
   - scipy
   - sympy
-  - ipywidgets
-  - jupyterlab =0.35
-  - notebook =5.7.4
+  - ipywidgets >=7.5.1
+  - jupyterlab >=1.2.6
+  - notebook >=6.*.*
   - pip
   - pytest
   - pip:
