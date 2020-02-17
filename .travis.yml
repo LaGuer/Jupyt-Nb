@@ -123,11 +123,8 @@ install:
   - ls $HOME/
 # Useful for debugging any issues with conda
   - $HOME/miniconda/bin/conda info -a
-#  - $HOME/miniconda/bin/conda install -c conda-forge -c pkgw-forge tectonic
   - $HOME/miniconda/bin/conda install -y -c anaconda jupyter
-#  - $HOME/miniconda/bin/conda install -y -c conda-forge jupyter_latex_envs nbformat tectonic
 #  - $HOME/miniconda/bin/conda install -y -c conda-forge nbformat
-  - $HOME/miniconda/bin/conda install -y -c conda-forge tectonic
   - $HOME/miniconda/bin/conda config --set always_yes yes --set changeps1 no
 #  - conda update -q conda
 
@@ -145,9 +142,6 @@ install:
 #  - pip3 install nbformat
   - jupyter nbextension enable --py widgetsnbextension
   - jupyter serverextension enable --sys-prefix jupyterlab_latex
-#  - pip3 install jupyter_latex_envs
-#  - jupyter nbextension install --py latex_envs
-#  - jupyter nbextension enable --py latex_envs
   - wget https://github.com/laguer/slideshow/archive/master.zip
   - unzip master.zip
   - mv slideshow-master slideshow
