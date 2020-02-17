@@ -1,0 +1,8 @@
+texlive-latex-extra
+texlive-fonts-extra
+texlive-fonts-recommended
+texlive-latex-recommended
+texlive-generic-recommended
+texlive-xetex
+dvipng
+xzdec
