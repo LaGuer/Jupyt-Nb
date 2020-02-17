@@ -16,6 +16,12 @@ dependencies:
   - jupyterlab =1.2.6
   - notebook >=6.0.*
   - pip
+  - runipy
+  - Sphinx >=2.4.0
+  - travis-sphinx =2.2.1
+  - flask >=0.12
+  - nbconvert
+  - nbsphinx
   - pytest
   - pip:
       - julia
