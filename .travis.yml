@@ -177,6 +177,7 @@ script:
   - jupyter nbconvert *.ipynb --to latex  --reveal-prefix=slideshow
   - jupyter nbconvert slideshow/hubble-radius/hubble-radius.ipynb --to slides --reveal-prefix=slideshow
   - jupyter nbconvert slideshow/hubble-radius/*.ipynb --to latex  --reveal-prefix=slideshow  
+
 #  - jupyter nbconvert *.ipynb --to slides --post serve
 #  - jupyter nbconvert test1.ipynb --to latex  --reveal-prefix=slideshow
 #  - jupyter nbconvert --to slides_with_lenvs slide-example2.ipynb
@@ -200,13 +201,16 @@ after_success: |
   if [ -n "$GITLAB_API_KEY" ]; then
     git checkout --orphan gh-pages
     git rm -rf --cached .
+    make -C docs/ html SPHINXOPTS="-W"
+    python conf.py
+    python run_notebooks.py
     rm ./slideshow/index.html
     cp slide-example.slides.html slideshow/index.html
     mv *.tex slideshow/
     mv slide-example1_files slideshow/slide-example1_files
-    cp hubble-radius.ipynb slideshow/hubble-radius.ipynb
+    cp *.ipynb slideshow/
     cp _gitlab-ci.yml .gitlab-ci.yml 
-    mv *.tex slideshow/
+    mv *.tex slideshow/   
     mv slide-example1_files slideshow/slide-example1_files
     # cp $HOME/build/LaGuer/Jupyt-Nb/hubble-radius-1.0.1/ $HOME/build/LaGuer/Jupyt-Nb/slideshow/
     # tectonic slideshow/test.tex --print && tectonic slideshow/slide-example1.tex --print 
